@@ -2,46 +2,43 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
-#include <errno.h>
+//#include <time.h>
+#include <stdlib.h>
 
-int	main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-	int id1 = fork();
-	int id2 = fork();
+	pid_t id = fork();
+	int n;
 
-	if ( id1 == 0)//i am in the child process
+	if(id == 0)
 	{
-		if (id2 == 0)
-		{
-			printf("this is y\n");
-			// wait(NULL) != -1;
-		}
-		else{
-			printf("this is the x\n");
-			// wait(NULL) != -1;
-		}
+		n = 1;
 	}
-	else{//parents and z process
-		if(id2 == 0)
-		{
-			printf("this is z\n");
-			// wait(NULL) != -1;
-		}
-		else{
-			printf("parents process\n");
-			// wait(NULL) != -1;
-		}
-	}
-	//when it is only wait(NULL), it will only terminate z process first and later parents process. So other 2 y,z process will be remined.
-	//to avoid it you should use while and errono != ECHILD to specify until there is no child.
-
-/*parents process
-this is z
-this is the x
-this is y*///hierachy from top to down
-	while(wait(NULL) != -1 || errno != ECHILD) 
+	else
 	{
-		printf("wait for a child to finish\n");
+		n = 6;
 	}
-	return(0);
+	if(id != 0)
+	{
+		wait(NULL); // for the macOS you should fill the parameter
+		//because wait works when you wait for the child process
+		//if you just put wait() with out that condition,
+		//the child process itself will also waiting for its child process 
+		//even it does not have one, then stuck at there and never get ended. 
+	}
+	int i;
+	for(i = n; i < n + 5; i++)
+	{
+		printf("%d", i);
+		//when you call printf, it will save in buffer and then print it out.
+		//but when you want to print it out every each time then you use fflush(stdout);
+		fflush(stdout);
+	}
+	//if you want to have only one line then
+	if ( id != 0)
+	{
+		printf("\n");
+	}
+	return 0;
 }
+//the order can be completely changed everytime you call it
