@@ -35,7 +35,7 @@ int main (int argc, char *argv[])
     //to make fifo is mkfifo("namefofile",permision mode), this fifo file will be used as a pipe.
     
     printf("Opening...\n");
-    /*might not have any outcome and the it is just hanging there,
+    /*might not have any outcome or it is just hanging there,
     so to check which procedure has been stopped, you can print it out. */
     /*when it comes to this instance that it hangs in the execution of open(), fifo its special feature is that it should open both ends, writing, and reading.
     which means that you should open another terminal and cat fifo file so it opens the read section.*/

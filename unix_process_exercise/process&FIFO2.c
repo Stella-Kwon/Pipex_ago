@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
             perror("READING ERROR : \n");
             return 2;
         }
+//not putting sizeof(ARRAY), there is also another way of passing the value of elements in a array.
 //but to check each procedure of reading, recommend bottom one, but for the faster process upper one.
        
     int i;
@@ -38,6 +39,7 @@ int main(int argc, char *argv[])
     //     }
     //     printf("READING VALUE ARRAY[%i] : %d\n", i, ARRAY[i]);
     // }
+    
     close(fd);
     printf("CLOSED READING FD\n");
     int sum = 0;

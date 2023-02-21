@@ -35,6 +35,7 @@
   ],
   "files.associations": {
     "stdlib.h": "c",
-    "string.h": "c"
+    "string.h": "c",
+    "unistd.h": "c"
   }
 }

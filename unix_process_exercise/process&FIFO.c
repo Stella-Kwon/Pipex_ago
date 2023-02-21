@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     close(fd);
     printf("Closed.\n");
 
-    int res[1];
+    int res;
     fd = open("sum",O_RDONLY);
     if(fd == -1)
     {
@@ -68,13 +68,13 @@ int main(int argc, char *argv[])
         return 4;
     }
     
-    if(read(fd, &res[1], sizeof(int)) == -1)//also this recommended to &res[1] as it is void * position.
+    if(read(fd, &res, sizeof(int)) == -1)
     {
         perror("reading error:");
         return 5;
     }
     //printf("Have result : %d\n", &res[1]);//this one gives some weird number.
-    printf("Have result : %d\n", res[1]);
+    printf("Have result : %d\n", res);
     close(fd);
     printf("Closed reading fd\n");
     return 0;
