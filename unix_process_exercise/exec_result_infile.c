@@ -40,7 +40,12 @@ int main(int argc, char *argv[])
         so the result of the process which is execlp() printed out in that file.
         That is how you can put the result in to the file.*/ 
         
+        /*
+        https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=bmw_rad&logNo=70176283594
+        https://nomad-programmer.tistory.com/106
+        */
         int err = execlp("ping","ping","-c","3","google.com", NULL);
+        
         //i dont want this result to print out in the terminal, so gonna put outcome in the file.
         //*****************
         //ONE MORE THING TO CONSIDER IS THAT EXECLP IS RUNNING DIRECTLY TO C PROGRAM, TO THE PROGRAM WHERE THEY EXIST (YOU CAN FIND WHERE THE PING EXIST BY COMMAND "WHERIS PING") WHICH IS NOW ON PING
