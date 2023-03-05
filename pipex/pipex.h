@@ -5,14 +5,48 @@
 # include<stdio.h>
 # include<sys/wait.h>
 # include<errno.h>
+# include "printf/ft_printf/ft_printf.h"
 
-typedef struct s_fdlist
+//# define EXIT_FAILURE 1 //there is already this mecro in stdlib.h
+# define EXIT_PATH 1
+# define EXIT_ARGC 2
+# define EXIT_FOPEN 3
+//# define EXIT_F
+//# define EXIT_
+typedef struct s_arg
 {
-    pid_t pid;
-    int fd;
-    int FILENO;
-}               t_fdlist;
-int pipe_create(int fd);
-int fork_handling();
+    char *infile;
+    char *outfile;
+    char **cmd;
+    int count_argv;
+   // char **env;
+    char **path;
+}              t_arg; 
+
+//structure itself doesnt work as a global variable.
+/*if you dont give pointer then you should
+void	init_args(t_arg *arg, int argc, char *argv[], char *envp[])
+{
+	if (argc != 5)
+		exit_with_error(EXIT_FAILURE, "failure by number of arguments", NULL);
+	arg->path = init_path(envp);
+	arg->envp = envp;
+	arg->infile = argv[1];
+	arg->cmd_cnt = argc - 3;
+	arg->cmd = (char ***)malloc(sizeof(char **) * (arg->cmd_cnt + 1));
+	if (arg->cmd == NULL)
+		exit_with_error(EXIT_FAILURE, "failure in allocating cmd", NULL);
+	arg->cmd[0] = NULL;
+	init_cmd(arg, argv);
+	arg->outfile = argv[argc - 1];
+}
+do like this and call it in main first.
+*/
+//so to keep the value itslef stored at each variables in struct, you should give return vlaue or
+// you should give it as pointer so it can hold the value which means need to malloc the structure.
+//when it is normal struct then ->  or .  both fine
+//but in pointer only t_arg->path is fine.
+
+
 
 #endif

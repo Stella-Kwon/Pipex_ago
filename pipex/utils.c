@@ -1,4 +1,5 @@
 
+#include pipex.h
 int child_stdout(int pid, int oldfd, int newfile)
 {
     if(pid == 0)

@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "wait.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "__availability": "c",
+        "locale": "c",
+        "ostream": "c",
+        "streambuf": "c"
     }
 }

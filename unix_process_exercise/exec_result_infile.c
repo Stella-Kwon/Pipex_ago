@@ -44,8 +44,7 @@ int main(int argc, char *argv[])
         https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=bmw_rad&logNo=70176283594
         https://nomad-programmer.tistory.com/106
         */
-        int err = execlp("ping","ping","-c","3","google.com", NULL);
-        
+         
         //i dont want this result to print out in the terminal, so gonna put outcome in the file.
         //*****************
         //ONE MORE THING TO CONSIDER IS THAT EXECLP IS RUNNING DIRECTLY TO C PROGRAM, TO THE PROGRAM WHERE THEY EXIST (YOU CAN FIND WHERE THE PING EXIST BY COMMAND "WHERIS PING") WHICH IS NOW ON PING
