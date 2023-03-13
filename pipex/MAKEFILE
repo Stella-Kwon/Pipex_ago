@@ -3,7 +3,7 @@
 CC = gcc 
 CFLAG = -Wall -Werror -Wextra
 NAME = pipex
-LIBFT = ./printf/ft_printf
+LIBFT = ./ft_printf
 
 SRC_F = errorhandling \
 		find_path \
@@ -27,9 +27,9 @@ endif
 
 all : $(NAME)
 
-$(NAME) : $(OBJ_FILES)
-		make -C &(LIBFT)
-		$(CC) $(CFLAG) -L $(LIBFT) -iprintft $^ -o $@
+$(NAME) : $(OBJ)
+		make -C $(LIBFT)
+		$(CC) $(CFLAG) -L $(LIBFT) -lprintft $^ -o $@
 
 clean :
 		make fclean -C $(LIBFT)

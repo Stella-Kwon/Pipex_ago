@@ -6,33 +6,87 @@
 /*   By: sukwon <sukwon@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:20:42 by sukwon            #+#    #+#             */
-/*   Updated: 2023/03/11 20:29:23 by sukwon           ###   ########.fr       */
+/*   Updated: 2023/03/13 15:33:47 by sukwon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int excution(t_arg stru, char **argv)
+int excution(int argc, char **argv, t_arg *stru)
 {
     pid_t pid;
 
-    pid = fork();
-    if(pid < 0)
+    if (pipe_create(stru) == EXIT_PIPE)
+        error_exit(EXIT_PIPE, "ERROR with piping", strerror(errno));
+    stru->i = 0;
+    while(stru->i < stru->count_cmd - 1)
+    {
+        pid = fork();
+        if(pid < 0)
+            exit_error(EXIT_FAILURE,"fork failure", strerror(errno));
+    
+        if(pid == 0)
+        {
+            if(argv[1])
+            {
+                
+            }
+            if(argv[argc - 1])
+            {
+                int infile;
+                
+                infile = infile(argc, argv);
+                if(infile = EXIT)
+            }
+            while( i < stru->count_cmd) 
+            execve(stru->cmd[i], stru->cmd[i], env)
+        }
+        else
+        {
+        
+        }
+    }
+
+}
+
+int excution(t_arg *stru, char **argv, int argc)
+{
+    pid_t pid;
+
+    stru->i = 0;
+    while(stru->i < stru->count_cmd - 1)
+    {
+        pid = fork();
+        if(pid < 0)
         exit_error(EXIT_FAILURE,"fork failure", strerror(errno));
     
+        if(pid == 0)
+        {
+            while( i < stru->count_cmd) 
+            execve(stru->cmd[i], stru->cmd[i], env)
+        }
+        else
+        {
+        
+        }
+    }
+
+}
+int child_stdout(int pid, int oldfd, int newfile)
+{
     if(pid == 0)
     {
-        
-    }
-    else
-    {
+        if(argv)
+        dup2(oldfd,newfile);
+        close(fd);
+        close(fd);
+        execve("argv[2]","argv[1]","argv")
 
     }
-
-    
-    
-    
+    /**/
+    return 0;
 }
+
 int infile(int argc, char **argv)
 {
     int infile;
@@ -45,6 +99,7 @@ int infile(int argc, char **argv)
     if(infile2 < 0)
         exit_error(EXIT_FAILURE,"infile dup2 fail",strerror(errno));
     close(infile);
+    return 0;
 }
 
 int outfile(int argc, char **argv)
@@ -59,4 +114,5 @@ int outfile(int argc, char **argv)
     if(outfile2 < 0)
         exit_error(EXIT_FAILURE,"outfile dup2 fail",strerror(errno));
     close(outfile);
+    return 0;
 }

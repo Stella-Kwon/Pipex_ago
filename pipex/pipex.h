@@ -6,7 +6,7 @@
 # include<string.h>
 # include<sys/wait.h>
 # include<errno.h>
-# include "printf/ft_printf/ft_printf.h"
+# include "ft_printf/ft_printf.h"
 
 //# define EXIT_FAILURE 1 //there is already this mecro in stdlib.h
 # define EXIT_PATH 1
@@ -16,23 +16,23 @@
 # define EXIT_EXECUTE 5
 # define EXIT_PIPE 6
 # define EXIT_STRU 7
-# define read 0
-# define write 1
+# define READ 0 
+# define WRITE 1
 
 typedef struct s_arg
 {
-    char *infile;
-    char *outfile;
-    char **cmd;
-	int count_cmd;
-    char **env;
-	int **pfd;
-    char **path;
-	int i;
-	int j;
-	char *temp_path;
-    char *temp_wholepath;
-}              t_arg; 
+	char	*infile;
+	char	*outfile;
+	char	**cmd;
+	int	count_cmd;
+	char	**env;
+	int	**pfd;
+	char	**path;
+	int	i;
+	int	j;
+	char	*temp_path;
+	char	*temp_wholepath;
+}				t_arg;
 
 // typedef struct s_path
 // {
