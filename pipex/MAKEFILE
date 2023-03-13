@@ -1,0 +1,47 @@
+.SUFFIX = .o .c
+
+CC = gcc 
+CFLAG = -Wall -Werror -Wextra
+NAME = pipex
+LIBFT = ./printf/ft_printf
+
+SRC_F = errorhandling \
+		find_path \
+		fork \
+		pipe \
+		utils 
+
+B_OBJ_F = errorhandling find_path fork pipe utils
+
+SRC = $(addsuffix .c, $(SRC_F))
+OBJ = $(addsuffix .o, $(SRC_F))
+
+B_SRC = $(addsuffix .c, $(B_SRC_F))
+B_OBJ = $(addsuffix .o, $(B_SRC_F))
+
+ifdef BONUS
+		OBJ_F = $(B_OBJ)
+else
+		OBJ_F = $(OBJ)
+endif
+
+all : $(NAME)
+
+$(NAME) : $(OBJ_FILES)
+		make -C &(LIBFT)
+		$(CC) $(CFLAG) -L $(LIBFT) -iprintft $^ -o $@
+
+clean :
+		make fclean -C $(LIBFT)
+		rm -f $(OBJ)
+		rm -f $(B_OBJ)
+
+fclean : clean
+	rm -f $(NAME)
+
+re : fclean all
+
+bonus : $(B_OBJ)
+	make BONUS=1 all
+
+.PHONY : all clean fclean re bonus

@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         //ONE MORE THING TO CONSIDER IS THAT EXECLP IS RUNNING DIRECTLY TO C PROGRAM, TO THE PROGRAM WHERE THEY EXIST (YOU CAN FIND WHERE THE PING EXIST BY COMMAND "WHERIS PING") WHICH IS NOW ON PING
         //WHICH MEANS THAT BY USING '|' PIPE, THIS CANNOT WORK.
         //THROUGH TERMINAL USING | IT READS THE BASH OR command promt script, BATCH SCRIPT, SO CAN BE WORK.
-        // BUT WIHT EXEC()WE CANNOT, BECAUSE THEY DONT GET ANY BASH SCRIPT.
+        // BUT WITH EXEC()WE CANNOT, BECAUSE THEY DONT GET ANY BASH SCRIPT.
         // PING ITSELF THOUGH THE EXEC THAT GOES INTO LIKE MAIN.C FILE AND RUN THE PROGRAM SO WHICH THEY TAKE
         // IN THE PARAMETER IS LIKE ARGV. 
 
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
         // USIING EXECLP("PING","PING","-C","3","GOOGLE.COM","|","GREP","\"RTT"\",NULL)WOULD NOT WORK.        
         // BUT YOU CAN DO SIMILAR BEHAVIOUR WITH PIPE WITH MORE ELABORATE THAN JUST GIVING OUT MORE PARAMETER.
         //********************
-        
+        int err = execlp("ping","ping","-c","3","google.com", NULL);
         if(err == -1)
         {
             printf("Could not find program to execute!\n");

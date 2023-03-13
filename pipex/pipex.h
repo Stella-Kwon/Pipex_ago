@@ -15,7 +15,7 @@
 # define EXIT_PFD 4
 # define EXIT_EXECUTE 5
 # define EXIT_PIPE 6
-//# define EXIT_
+# define EXIT_STRU 7
 # define read 0
 # define write 1
 
@@ -28,8 +28,22 @@ typedef struct s_arg
     char **env;
 	int **pfd;
     char **path;
+	int i;
+	int j;
+	char *temp_path;
+    char *temp_wholepath;
 }              t_arg; 
-/***구조체 https://dojang.io/mod/page/view.php?id=418*/
+
+// typedef struct s_path
+// {
+// 	char *temp_path;
+//     char *temp_wholepath;
+//     int i;
+//     int j;
+// }			t_path;
+/***구조체 https://dojang.io/mod/page/view.php?id=418
+ https://rumiamochi.tistory.com/22
+*/
 //structure itself doesnt work as a global variable.
 /*if you dont give pointer then you should
 void	init_args(t_arg *arg, int argc, char *argv[], char *envp[])
@@ -56,7 +70,7 @@ do like this and call it in main first.
 
 
 /********find_path.c********/
-char ** path_find(t_arg *stru);
+int path_find(t_arg *stru);
 int add_path(t_arg *stru, int argc, char **argv);
 int count_argv(t_arg *stru, int argc, char **argv);
 
