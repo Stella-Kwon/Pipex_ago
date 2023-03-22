@@ -10,6 +10,30 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <string.h>
+void	ft_putstr_fd(char *s, int fd)
+{
+	size_t	len;
+
+	if (!s || fd < 0)
+		return ;
+	len = strlen((const char *)s);
+	write(fd, s, len);
+}
+
+int error_exit(int exitnum, char * mess, char * filename)
+{
+    ft_putstr_fd ("zsh: ", 2);
+    if(mess)
+        ft_putstr_fd(mess, 2);
+    if(filename)
+    { 
+        ft_putstr_fd(": ", 2);
+        ft_putstr_fd(filename, 2);
+    }
+    ft_putstr_fd("\n", 2);
+    return(exitnum);
+}
 
 int main(int argc, char *argv[])
 {
@@ -21,14 +45,19 @@ int main(int argc, char *argv[])
 
     if (pid == 0)
     {//child process
-       int err = execlp("ping","ping","-c","3","google.com", NULL);
+       //int err = execlp("ping","ping","-c", "3","google.com", NULL);
+       int err = execlp("ls","ls","-l", NULL);
        //execlp("mkfifo","mkfifo","testfifo",NULL);
-       if(err == -1)
-       {
-        printf("Could not find program to execute!\n");
-        return 2;
-       }
-        printf("This should not launch on the terminal\n");//this one will never gonna print it out in this case.
+       if (errno == 2)//number two error is when failing searching cmd
+		    error_exit(EXIT_FAILURE, "command not found",NULL);
+	    else
+		    error_exit(EXIT_FAILURE, "failure by execlp", strerror(errno));
+    //    if(err == -1)//general cases of error 
+    //    {
+    //     printf("Could not find program to execute!\n");
+    //     return 2;
+    //    }
+    //    printf("This should not launch on the terminal\n");//this one will never gonna print it out in this case.
         //if the if(err =-1) wasnt there ,then this printf will be printed if the execlp not worked.
     }
     else
@@ -44,7 +73,7 @@ int main(int argc, char *argv[])
             if(statuscode == 0)//always program executed perfectly =0
                 printf("Successful\n");
             else
-                printf("Failure with status code %d\n", statuscode);
+                printf( "Failure with status code %d\n",statuscode);
         }
         printf("Some post processing goes here!\n");
     }

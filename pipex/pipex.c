@@ -6,7 +6,7 @@
 /*   By: sukwon <sukwon@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:05:37 by sukwon            #+#    #+#             */
-/*   Updated: 2023/03/13 14:59:21 by sukwon           ###   ########.fr       */
+/*   Updated: 2023/03/20 11:00:19 by sukwon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,27 @@ int main(int argc, char *argv[], char *envp[])
 //extern char **environ and int main(int argc, char *argv[], char *envp[])
 {
     t_arg   *stru;
-    //t_path  *temp;
     
     stru = (t_arg *)ft_calloc(1 , sizeof(t_arg));
     if (stru == NULL)
         error_exit(EXIT_STRU,"MALLOC FAIL","T_ARG");
     stru->env = envp;
-    // temp = (t_path *)ft_calloc(1 , sizeof(t_path));
-    // if (temp == NULL)
-    //     error_exit(EXIT_STRU,"MALLOC FAIL","T_PATH");
+  
+	else 
+		error_exit(EXIT_PATH, "i != argc -3", NULL);
+    all_free(&stru);
+    all_free(&stru->pfd);
+    all_free(&stru->path);
     
-   
-    free(stru);
     return 0;
 }
-
-int execute(t_arg *stru)
+void  free_all(t_arg *stru)
+{
+    all_free(&stru->pfd);
+    all_free(&stru->path);
+    all_free(stru);
+}
+int execute(t_arg *stru, char *envp[])
 {
     
 }

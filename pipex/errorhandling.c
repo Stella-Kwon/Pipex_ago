@@ -6,7 +6,7 @@
 /*   By: sukwon <sukwon@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:05:47 by sukwon            #+#    #+#             */
-/*   Updated: 2023/03/04 17:43:28 by sukwon           ###   ########.fr       */
+/*   Updated: 2023/03/15 15:36:34 by sukwon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,5 @@ int error_exit(int exitnum, char * mess, char * filename)
     ft_putstr_fd("\n", 2);
     return(exitnum);
 }
+
+//> < if there is no redirection symbol while using grep, cat then it will give its command name rather than zsh

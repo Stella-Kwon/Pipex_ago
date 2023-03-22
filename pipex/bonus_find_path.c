@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_path.c                                        :+:      :+:    :+:   */
+/*   bonus_find_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sukwon <sukwon@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 14:37:32 by sukwon            #+#    #+#             */
-/*   Updated: 2023/03/21 16:11:23 by sukwon           ###   ########.fr       */
+/*   Created: 2023/03/20 11:04:23 by sukwon            #+#    #+#             */
+/*   Updated: 2023/03/21 09:49:43 by sukwon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 int	path_find(t_arg *stru)
 {
@@ -44,7 +44,7 @@ int	add_path(t_arg *stru, int argc, char **argv)
 //but what you should consider is that you need to know for "grep " but just think later of those
 	if(path_find(stru) == EXIT_PATH)
 		error_exit(EXIT_PATH, "Find_Path function FAILURE", NULL);
-    if (argc != 5)
+    if (argc < 5)
  		error_exit(EXIT_ARGC, "FAILURE OF GETTING RIGHT ARGC", NULL);
     while (stru->j++ < argc -1)
     {
@@ -64,7 +64,7 @@ int	add_path(t_arg *stru, int argc, char **argv)
 	if(stru->i == argc -3)
 		stru->count_cmd = stru->i;
 	else 
-		error_exit(EXIT_PATH, "i != argc -3", NULL);
+		error_exit(EXIT_PATH, "stru->count_cmd != argc -3", NULL);
 	return (0);
 }
 /*https://velog.io/@kyj93790/Pipex-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98environment-variable-PATH*/

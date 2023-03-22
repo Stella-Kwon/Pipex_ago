@@ -7,6 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "-std=c++14",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
@@ -22,7 +23,16 @@
                 "isDefault": true
             },
             "detail": "디버거에서 생성된 작업입니다."
-        }
+        },
+        {
+            "label": "EXE",
+            "type" :"shell",
+            "command": "${fileDirname}/${fileBasenameNoExtension}",
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ]
+           }
     ],
     "version": "2.0.0"
 }

@@ -106,7 +106,7 @@ int main(int argc, char*argv[])
         close(fd[1][1]);
         close(fd[2][0]);
 
-        if(read(fd[1][0],&x,sizeof(x)) < 0)
+        if(read(fd[1][0],&x,sizeof(x)) < 0) //you can do it with using dup2(pipe[][],stdinputnumber)
         {
             printf("Error on writing in B pro : %s",strerror(errno));
             return 7;

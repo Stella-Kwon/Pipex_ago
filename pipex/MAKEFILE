@@ -1,24 +1,22 @@
 .SUFFIX = .o .c
 
-CC = gcc 
+CC = cc 
 CFLAG = -Wall -Werror -Wextra
 NAME = pipex
 LIBFT = ./ft_printf
 
 SRC_F = errorhandling \
 		find_path \
-		fork \
-		pipe \
-		utils 
-
+		redirect \
+		pipe
+		
 B_OBJ_F = errorhandling find_path fork pipe utils
-
+OBJS_DIR = bonus/
 SRC = $(addsuffix .c, $(SRC_F))
 OBJ = $(addsuffix .o, $(SRC_F))
 
 B_SRC = $(addsuffix .c, $(B_SRC_F))
-B_OBJ = $(addsuffix .o, $(B_SRC_F))
-
+B_OBJ = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(B_SRC_F)))
 ifdef BONUS
 		OBJ_F = $(B_OBJ)
 else
@@ -27,7 +25,10 @@ endif
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
+$(OBJS_DIR):
+		@mkdir -p $(OBJS_DIR)
+
+$(NAME) :$(OBJSF) $(OBJ)
 		make -C $(LIBFT)
 		$(CC) $(CFLAG) -L $(LIBFT) -lprintft $^ -o $@
 

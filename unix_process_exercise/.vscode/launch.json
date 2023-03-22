@@ -20,7 +20,7 @@
             "request": "launch",
             "args": [],
             "cwd": "/Users/sukwon/Desktop/pipex",
-            "program": "/Users/sukwon/Desktop/pipex/build/Debug/outDebug"
+            "program": "${workspaceFolder}/${fileBasenameNoExtension}",
         },
         {
             "name": "(lldb) 시작",
